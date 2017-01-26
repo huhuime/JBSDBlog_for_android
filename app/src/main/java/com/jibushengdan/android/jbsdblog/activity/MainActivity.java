@@ -23,6 +23,7 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         longSvg.startPathAnimator(4,5000,4900);
+
         new Handler().postDelayed(new Runnable(){
             public void run() {
                 longSvg.stopPathAnimator(true, new PathView.PathAnimatorListener() {
