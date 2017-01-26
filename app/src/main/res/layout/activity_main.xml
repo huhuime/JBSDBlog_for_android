@@ -4,10 +4,5 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.jibushengdan.android.jbsdblog.MainActivity">
-
-    <WebView
-        android:id="@+id/webView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    tools:context="com.jibushengdan.android.jbsdblog.activity.MainActivity">
 </RelativeLayout>
