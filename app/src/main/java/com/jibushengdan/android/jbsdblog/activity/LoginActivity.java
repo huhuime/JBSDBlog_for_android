@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import com.jibushengdan.android.jbsdblog.R;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
     private WebView webView;
 
     @Override

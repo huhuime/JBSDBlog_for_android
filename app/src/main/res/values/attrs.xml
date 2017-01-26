@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="IcoTextView">
+        <attr name="fillColor" format="color"/>
+        <attr name="borderColor" format="color"/>
+        <attr name="borderWidth" format="dimension"/>
+        <attr name="borderRadius" format="dimension"/>
+    </declare-styleable>
+    <declare-styleable name="TabRadioButton">
+        <!--<attr name="fillColor" format="color"/>
+        <attr name="borderColor" format="color"/>
+        <attr name="borderWidth" format="dimension"/>-->
+        <attr name="isFirst" format="boolean"/><!--是否第1个-->
+        <attr name="isEnd" format="boolean"/><!--是否最后1个-->
+        <attr name="hasTop" format="boolean"/><!--是否需要顶部有边框-->
+    </declare-styleable>
+    <declare-styleable name="PathView">
+        <attr name="pathColor" format="color|reference"/>
+        <attr name="pathWidth" format="dimension|reference"/>
+        <attr name="svg" format="reference"/>
+        <attr name="fill" format="boolean"/>
+        <attr name="ptahFillColor" format="color|reference"/>
+        <attr name="naturalColors" format="boolean"/>
+    </declare-styleable>
+</resources>
