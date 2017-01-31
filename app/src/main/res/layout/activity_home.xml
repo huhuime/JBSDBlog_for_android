@@ -10,6 +10,9 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.jibushengdan.android.jbsdblog.activity.HomeActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/activity_bar"></LinearLayout>
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tabs"
@@ -23,7 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/tabs" />
-    <com.jibushengdan.android.jbsdblog.widget.PathView
+    <!--<com.jibushengdan.android.jbsdblog.widget.PathView
         android:id="@+id/long_svg"
         android:layout_width="64dp"
         android:layout_height="64dp"
@@ -32,5 +35,14 @@
         app:pathColor="@color/colorFont"
         app:pathWidth="1dp"
         app:svg="@raw/logo_long"
+        android:transitionName="long_svg"/>-->
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:srcCompat="@drawable/ic_logo"
+        android:tint="#fff"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/imageView"
         android:transitionName="long_svg"/>
 </RelativeLayout>

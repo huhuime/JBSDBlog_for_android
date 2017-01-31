@@ -7,4 +7,5 @@
     <color name="colorDarkFont">#333</color>
     <color name="colorGrayFont">#888</color>
     <color name="colorChildBackground">#8FFF</color>
+    <color name="dark8">#8000</color>
 </resources>

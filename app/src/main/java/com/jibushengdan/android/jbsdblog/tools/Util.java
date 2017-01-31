@@ -150,6 +150,7 @@ public class Util {
             bundle=ActivityOptions.makeSceneTransitionAnimation( activity,pairs).toBundle();
         }
         Intent intent = new Intent(activity, cls);
+
         if(value!=null)intent.putExtra(SAWSE, value.toJSONString());
         ActivityCompat.startActivity(activity, intent, bundle);
     }
