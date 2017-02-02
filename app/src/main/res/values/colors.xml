@@ -2,9 +2,10 @@
 <resources>
     <color name="colorPrimary">#36A579</color>
     <color name="colorPrimaryDark">#206349</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">@android:color/holo_orange_light</color>
     <color name="colorFont">#FAFAFC</color>
     <color name="colorDarkFont">#333</color>
+    <color name="colorLine">#ccc</color>
     <color name="colorGrayFont">#888</color>
     <color name="colorChildBackground">#8FFF</color>
     <color name="dark8">#8000</color>

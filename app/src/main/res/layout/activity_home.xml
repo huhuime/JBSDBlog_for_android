@@ -1,48 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_home"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.jibushengdan.android.jbsdblog.activity.HomeActivity">
-    <LinearLayout
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/activity_bar"></LinearLayout>
-
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tabs"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        app:tabMode="scrollable"
-        android:elevation="4dp"/>
+        android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                app:layout_scrollFlags="scroll"
+                android:gravity="center"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    app:srcCompat="@drawable/animated_vector_logo_in"
+                    android:tint="#fff"
+                    android:transitionName="long_svg" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="至简至陋"/>
+            </LinearLayout>
+        <!--</android.support.design.widget.CollapsingToolbarLayout>-->
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tab"
+            app:tabMode="scrollable"
+            android:layout_width="match_parent"
+            app:tabSelectedTextColor="@color/colorAccent"
+            app:tabTextColor="@android:color/white"
+            android:layout_height="?actionBarSize"/>
+    </android.support.design.widget.AppBarLayout>
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/tabs" />
-    <!--<com.jibushengdan.android.jbsdblog.widget.PathView
-        android:id="@+id/long_svg"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        app:pathColor="@color/colorFont"
-        app:pathWidth="1dp"
-        app:svg="@raw/logo_long"
-        android:transitionName="long_svg"/>-->
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        app:srcCompat="@drawable/ic_logo"
-        android:tint="#fff"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/imageView"
-        android:transitionName="long_svg"/>
-</RelativeLayout>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"></android.support.v4.view.ViewPager>
+</android.support.design.widget.CoordinatorLayout>

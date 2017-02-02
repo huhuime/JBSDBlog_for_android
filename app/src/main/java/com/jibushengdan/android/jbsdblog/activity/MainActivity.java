@@ -45,7 +45,7 @@ public class MainActivity extends BaseActivity {
                 finish();
             }
         };
-        handler.postDelayed(runnable, 1000);
+        handler.postDelayed(runnable, 1100);
     }
 
     @Override
