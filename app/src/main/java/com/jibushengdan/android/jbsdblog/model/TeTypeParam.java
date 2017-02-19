@@ -7,7 +7,7 @@ import com.litesuits.http.request.param.HttpRichParamModel;
 /**
  * Created by huhu on 2017/2/2.
  */
-@HttpUri(MainApplication.url+"te.php")
+@HttpUri("te.php")
 public class TeTypeParam extends HttpRichParamModel<TeType> {
     private int type=0;
 

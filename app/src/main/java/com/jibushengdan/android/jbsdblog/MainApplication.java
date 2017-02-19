@@ -14,9 +14,12 @@ import com.litesuits.http.data.Json;
 
 public class MainApplication extends Application {
     public final static String url="https://jibushengdan.com/";
+    public final static String dsUrl="https://jibushengdan.duoshuo.com/";
     public static LiteHttp liteHttp;
+    public static LiteHttp dsLiteHttp;
     public static int statusBarHeight = -1;
     public static int navigationBarHeight = -1;
+    public static final long site_ims=System.currentTimeMillis()/1000;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -24,7 +27,8 @@ public class MainApplication extends Application {
     }
     private void init() {
         Json.set(new FastJson());
-        liteHttp = LiteHttp.build(this).setDebugged(true).create();
+        liteHttp = LiteHttp.build(this).setBaseUrl(url).setDebugged(true).create();
+        dsLiteHttp = LiteHttp.build(this).setBaseUrl(dsUrl+"api/").setDebugged(true).create();
 
 
         //获取status_bar_height资源的ID

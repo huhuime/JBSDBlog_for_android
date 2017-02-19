@@ -1,6 +1,7 @@
 package com.jibushengdan.android.jbsdblog.activity;
 
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Html;
@@ -17,6 +18,8 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSONObject;
 import com.jibushengdan.android.jbsdblog.MainApplication;
 import com.jibushengdan.android.jbsdblog.R;
+import com.jibushengdan.android.jbsdblog.fragment.CommentFragment;
+import com.jibushengdan.android.jbsdblog.fragment.HomePagerFragment;
 import com.jibushengdan.android.jbsdblog.model.Te;
 import com.jibushengdan.android.jbsdblog.model.TeParam;
 import com.jibushengdan.android.jbsdblog.tools.ListMenu;
@@ -52,6 +55,8 @@ public class DetailActivity extends BaseActivity {
     RelativeLayout activityDetail;
     @BindView(R.id.moreImageView)
     ImageView moreImageView;
+    @BindView(R.id.tab)
+    TabLayout tab;
 
     private JSONObject data;
     private String fname = null;
@@ -126,7 +131,12 @@ public class DetailActivity extends BaseActivity {
             }
         });
         listMenu.setTextView(moreTextView);
-        listMenu.setImageView(moreImageView,-90);
+        listMenu.setImageView(moreImageView, -90);
+
+        HomeActivity.PagerAdapter pagerAdapter = new HomeActivity.PagerAdapter(getSupportFragmentManager());
+        pagerAdapter.addFragment(new CommentFragment(fname,data.getString("name")), "评论");
+        pager.setAdapter(pagerAdapter);
+        tab.setupWithViewPager(pager);
     }
 
     private void loadData() {
