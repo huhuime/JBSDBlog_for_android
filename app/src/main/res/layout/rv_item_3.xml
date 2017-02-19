@@ -14,14 +14,15 @@
         android:textColor="@color/colorDarkFont"
         style="?android:attr/textAppearanceMedium"
         android:text="播放器bug修复|第1阶段"
-        android:id="@+id/name" />
+        android:id="@+id/name"
+        android:transitionName="name"/>
     <TextView
+        android:id="@+id/abs"
         android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/colorDarkFont"
-        android:text="修复拖到进度条后再次插入播放时间的问题..."
-        android:id="@+id/abs" />
+        android:text="修复拖到进度条后再次插入播放时间的问题..." />
     <LinearLayout
         android:layout_marginTop="5dp"
         android:layout_width="match_parent"

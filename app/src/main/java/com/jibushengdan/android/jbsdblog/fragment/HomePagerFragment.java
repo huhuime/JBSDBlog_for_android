@@ -10,17 +10,18 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.alibaba.fastjson.JSONObject;
 import com.jibushengdan.android.jbsdblog.MainApplication;
 import com.jibushengdan.android.jbsdblog.R;
-import com.jibushengdan.android.jbsdblog.model.Te;
-import com.jibushengdan.android.jbsdblog.model.TeParam;
+import com.jibushengdan.android.jbsdblog.activity.DetailActivity;
+import com.jibushengdan.android.jbsdblog.model.TeType;
+import com.jibushengdan.android.jbsdblog.model.TeTypeParam;
+import com.jibushengdan.android.jbsdblog.tools.Util;
 import com.litesuits.http.listener.HttpListener;
 import com.litesuits.http.request.JsonRequest;
 import com.litesuits.http.response.Response;
@@ -44,7 +45,7 @@ public class HomePagerFragment extends Fragment {
     Unbinder unbinder;
     private PagerAdapter recyclerAdapter;
     private int type = 0;
-    private List<Te.Get> list = new ArrayList<>();
+    private List<TeType.Get> list = new ArrayList<>();
 
     public HomePagerFragment() {
         super();
@@ -71,13 +72,13 @@ public class HomePagerFragment extends Fragment {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                TeParam teParam = new TeParam();
+                TeTypeParam teParam = new TeTypeParam();
                 teParam.setType(type);
-                MainApplication.liteHttp.executeAsync(new JsonRequest<Te>(teParam, Te.class) {
+                MainApplication.liteHttp.executeAsync(new JsonRequest<TeType>(teParam, TeType.class) {
                 }
-                        .setHttpListener(new HttpListener<Te>() {
+                        .setHttpListener(new HttpListener<TeType>() {
                             @Override
-                            public void onSuccess(Te te, Response<Te> response) {
+                            public void onSuccess(TeType te, Response<TeType> response) {
 
                                 list.clear();
                                 list.addAll(te.getGet());
@@ -96,22 +97,30 @@ public class HomePagerFragment extends Fragment {
 
     private void initData() {
         if (!list.isEmpty()) return;
-        TeParam teParam = new TeParam();
+        TeTypeParam teParam = new TeTypeParam();
         teParam.setType(type);
         refreshLayout.setRefreshing(true);
-        MainApplication.liteHttp.executeAsync(new JsonRequest<Te>(teParam, Te.class) {
+        MainApplication.liteHttp.executeAsync(new JsonRequest<TeType>(teParam, TeType.class) {
         }
-                .setHttpListener(new HttpListener<Te>() {
+                .setHttpListener(new HttpListener<TeType>() {
                     @Override
-                    public void onSuccess(Te te, Response<Te> response) {
+                    public void onSuccess(TeType te, Response<TeType> response) {
                         list.addAll(te.getGet());
                         if (refreshLayout != null) {
                             refreshLayout.setRefreshing(false);
                             recyclerAdapter.notifyItemRangeInserted(0, list.size());
                         }
-                        //HttpUtil.showTips(getActivity(), "response", JSON.toJSONString(te));
                     }
                 }));
+    }
+
+    public void recyclerOnItemClick(View view, PagerAdapter.TeViewHolder holder,int position){
+        TeType.Get data=list.get(position);
+        String type=data.getType();
+        if(type.equals("3")||type.equals("5")){
+            PagerAdapter.Te3ViewHolder t3vh=(PagerAdapter.Te3ViewHolder)holder;
+            Util.startActivityWhitSharedElement(getActivity(), DetailActivity.class,(JSONObject)JSONObject.toJSON(data),new View[]{t3vh.name});
+        }
     }
 
     @Override
@@ -122,10 +131,10 @@ public class HomePagerFragment extends Fragment {
 
     public class PagerAdapter extends RecyclerView.Adapter<PagerAdapter.TeViewHolder> {
         private final  int[] layouts=new int[]{R.layout.rv_item_un,R.layout.rv_item_1,R.layout.rv_item_un,R.layout.rv_item_3,R.layout.rv_item_un,R.layout.rv_item_3};
-        private List<Te.Get> datas;
+        private List<TeType.Get> datas;
         private LayoutInflater inflater;
 
-        public PagerAdapter(Context context, List<Te.Get> datas) {
+        public PagerAdapter(Context context, List<TeType.Get> datas) {
             this.datas = datas;
             inflater = LayoutInflater.from(context);
         }
@@ -137,7 +146,6 @@ public class HomePagerFragment extends Fragment {
             public TeViewHolder(View view) {
                 super(view);
                 ButterKnife.bind(this, view);
-                abs.setMovementMethod(LinkMovementMethod.getInstance());
             }
         }
         public class Te1ViewHolder extends TeViewHolder{
@@ -213,12 +221,13 @@ public class HomePagerFragment extends Fragment {
         }
 
         @Override
-        public void onBindViewHolder(TeViewHolder holder, int position) {
-            Te.Get data=datas.get(position);
+        public void onBindViewHolder(final TeViewHolder holder, final int position) {
+            TeType.Get data=datas.get(position);
             switch (data.getType()){
                 case "1":
                     Te1ViewHolder holder1=(Te1ViewHolder)holder;
                     holder1.abs.setText(Html.fromHtml("　　"+data.getAbs()));
+                    holder1.abs.setMovementMethod(LinkMovementMethod.getInstance());
                     holder1.dat.setText(data.getDat());
                     break;
                 case "3":
@@ -226,14 +235,33 @@ public class HomePagerFragment extends Fragment {
                     Te3ViewHolder holder3=(Te3ViewHolder)holder;
                     holder3.name.setText(data.getName());
                     holder3.abs.setText(Html.fromHtml(data.getAbs()));
+                    if(data.getAbs().indexOf("</a>")>-1){
+                        holder3.abs.setMovementMethod(LinkMovementMethod.getInstance());
+                        holder3.abs.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                recyclerOnItemClick(view,holder,position);
+                            }
+                        });
+                    }
                     holder3.dat.setText(data.getDat());
                     break;
             }
+            bindItemViewClickListener(holder,position);
         }
 
         @Override
         public int getItemCount() {
             return datas.size();
+        }
+
+        public void bindItemViewClickListener(final TeViewHolder holder, final int position){
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    recyclerOnItemClick(view,holder,position);
+                }
+            });
         }
     }
 }

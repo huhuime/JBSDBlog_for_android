@@ -5,21 +5,11 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
-import com.alibaba.fastjson.JSON;
 import com.jibushengdan.android.jbsdblog.R;
 import com.jibushengdan.android.jbsdblog.fragment.HomePagerFragment;
-import com.jibushengdan.android.jbsdblog.model.Te;
-import com.jibushengdan.android.jbsdblog.model.TeParam;
-import com.litesuits.http.LiteHttp;
-import com.litesuits.http.listener.HttpListener;
-import com.litesuits.http.request.JsonRequest;
-import com.litesuits.http.response.Response;
-import com.litesuits.http.utils.HttpUtil;
 
 import java.util.ArrayList;
 import java.util.List;

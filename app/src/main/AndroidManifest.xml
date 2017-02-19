@@ -6,13 +6,15 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+        android:name=".MainApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:name=".MainApplication"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.MainActivity" android:theme="@style/AppThemeWallpaper">
+        <activity
+            android:name=".activity.MainActivity"
+            android:theme="@style/AppThemeWallpaper">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,7 +22,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.LoginActivity" />
-        <activity android:name=".activity.HomeActivity"></activity>
+        <activity android:name=".activity.HomeActivity" />
+        <activity android:name=".activity.DetailActivity"></activity>
     </application>
 
 </manifest>

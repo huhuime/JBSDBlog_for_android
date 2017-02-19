@@ -159,10 +159,17 @@ public class Util {
         startActivityWhitSharedElement(activity,cls,SAWSE,value,views);
     }
 
-    public static void setTextViewWhitSharedElement(Activity activity,String[]strs,TextView[] views){
+    public static JSONObject setTextViewWhitSharedElement(Activity activity,String[]strs,TextView[] views){
         Intent intent =activity.getIntent();
         JSONObject value=JSON.parseObject(intent.getStringExtra(SAWSE));
         setTextView(value,strs,views);
+        return  value;
+    }
+    public static JSONObject setTextViewWhitSharedElement(Activity activity,TextView[] views){
+        Intent intent =activity.getIntent();
+        JSONObject value=JSON.parseObject(intent.getStringExtra(SAWSE));
+        setTextView(value,views);
+        return  value;
     }
 
     /**
@@ -179,6 +186,13 @@ public class Util {
         int l=strs.length;
         for (int i=0;i<l;i++){
             if(value.containsKey(strs[i]))views[i].setText(value.getString(strs[i]));
+        }
+    }
+    public static void setTextView(JSONObject value, TextView[] views) {
+        int l=views.length;
+        for (int i=0;i<l;i++){
+            String key=views[i].getTransitionName();
+            if(value.containsKey(key))views[i].setText(value.getString(key));
         }
     }
 

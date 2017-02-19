@@ -7,6 +7,11 @@
     <color name="colorDarkFont">#333</color>
     <color name="colorLine">#ccc</color>
     <color name="colorGrayFont">#888</color>
+    <color name="colorDofFont">#767676</color>
+    <color name="colorRed">@android:color/holo_red_light</color>
     <color name="colorChildBackground">#8FFF</color>
     <color name="dark8">#8000</color>
+    <color name="bg_l">#fefefe</color>
+    <color name="bg">#fafafa</color>
+    <color name="bg_d">#f0f0f0</color>
 </resources>

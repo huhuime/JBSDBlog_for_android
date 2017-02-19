@@ -24,7 +24,8 @@ public class MainApplication extends Application {
     }
     private void init() {
         Json.set(new FastJson());
-        liteHttp = LiteHttp.build(this).create();
+        liteHttp = LiteHttp.build(this).setDebugged(true).create();
+
 
         //获取status_bar_height资源的ID
         Resources rs = getResources();
