@@ -149,8 +149,8 @@ public class HomePagerFragment extends Fragment {
             }
         }
         public class Te1ViewHolder extends TeViewHolder{
-            @BindView(R.id.dat)
-            TextView dat;
+            /*@BindView(R.id.dat)
+            TextView dat;*/
             public Te1ViewHolder(View view) {
                 super(view);
             }
@@ -158,8 +158,8 @@ public class HomePagerFragment extends Fragment {
         public class Te3ViewHolder extends TeViewHolder{
             @BindView(R.id.name)
             TextView name;
-            @BindView(R.id.dat)
-            TextView dat;
+            /*@BindView(R.id.dat)
+            TextView dat;*/
             @BindView(R.id.tip)
             TextView tip;
             @BindView(R.id.comment)
@@ -228,7 +228,7 @@ public class HomePagerFragment extends Fragment {
                     Te1ViewHolder holder1=(Te1ViewHolder)holder;
                     holder1.abs.setText(Html.fromHtml("　　"+data.getAbs()));
                     holder1.abs.setMovementMethod(LinkMovementMethod.getInstance());
-                    holder1.dat.setText(data.getDat());
+                    //holder1.dat.setText(data.getDat());
                     break;
                 case "3":
                 case "5":
@@ -244,7 +244,7 @@ public class HomePagerFragment extends Fragment {
                             }
                         });
                     }
-                    holder3.dat.setText(data.getDat());
+                    //holder3.dat.setText(data.getDat());
                     break;
             }
             bindItemViewClickListener(holder,position);

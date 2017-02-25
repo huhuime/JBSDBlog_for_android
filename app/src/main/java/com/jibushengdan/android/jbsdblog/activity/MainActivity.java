@@ -30,7 +30,7 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         //longSvg.startPathAnimator(4,5000,4900);
-        AnimatedVectorDrawable avd = new AnimatedVectorDrawable();
+        //AnimatedVectorDrawable avd = new AnimatedVectorDrawable();
         Animatable animatable = (Animatable) imageView.getDrawable();
         animatable.start();
         AlphaAnimation alphaAnimation=new AlphaAnimation(0.0f,1.0f);

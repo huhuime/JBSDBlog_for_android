@@ -1,44 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_home"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     tools:context="com.jibushengdan.android.jbsdblog.activity.HomeActivity">
-    <android.support.design.widget.AppBarLayout
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                app:layout_scrollFlags="scroll"
-                android:gravity="center"
-                android:orientation="vertical">
-                <ImageView
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    app:srcCompat="@drawable/animated_vector_logo_in"
-                    android:tint="#fff"
-                    android:transitionName="long_svg" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:text="至简至陋"/>
-            </LinearLayout>
-        <!--</android.support.design.widget.CollapsingToolbarLayout>-->
-        <android.support.design.widget.TabLayout
-            android:id="@+id/tab"
-            app:tabMode="scrollable"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            app:tabSelectedTextColor="@color/colorAccent"
-            app:tabTextColor="@android:color/white"
-            android:layout_height="?actionBarSize"/>
-    </android.support.design.widget.AppBarLayout>
-    <android.support.v4.view.ViewPager
-        android:id="@+id/pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
-</android.support.design.widget.CoordinatorLayout>
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/listView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:paddingTop="180dp" />
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/activity_bar"
+                android:alpha="0.8"
+                android:background="@color/colorPrimary" />
+
+            <LinearLayout
+                android:id="@+id/menuLayout"
+                android:layout_width="@dimen/activity_bar"
+                android:layout_height="@dimen/activity_bar"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:elevation="12dp"
+                android:focusable="true"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/menuBtn"
+                    android:layout_width="78dp"
+                    android:layout_height="78dp"
+                    android:scaleType="fitXY"
+                    android:tint="#fff"
+                    app:srcCompat="@drawable/animated_vector_menu_in" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/logoLayout"
+                android:layout_width="130dp"
+                android:layout_height="143dp"
+                android:layout_marginLeft="40dp"
+                android:gravity="center">
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:scaleType="fitXY"
+                    android:tint="@color/colorFont"
+                    android:transitionName="long_svg"
+                    app:srcCompat="@drawable/animated_vector_logo_in" />
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/activity_bar"
+                android:layout_alignBottom="@+id/logoLayout"
+                android:layout_toEndOf="@+id/logoLayout"
+                android:gravity="center"
+                android:text="home"
+                android:alpha="0"
+                android:textColor="@color/colorFont"
+                android:textSize="@dimen/titleSize" />
+
+            <TextView
+                android:id="@+id/subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/logoLayout"
+                android:layout_marginLeft="@dimen/activity_bar"
+                android:alpha="0.5"
+                android:gravity="center"
+                android:text="至简至陋"
+                android:textColor="@color/colorFont" />
+        </RelativeLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+
+</RelativeLayout>

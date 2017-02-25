@@ -96,6 +96,7 @@ public class ListMenu {
         v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(System.currentTimeMillis()-disTime<300)return;
                 if(imageView!=null){
                     if(objectAnimator!=null){
                         objectAnimator.cancel();
@@ -121,6 +122,7 @@ public class ListMenu {
         popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
+                disTime=System.currentTimeMillis();
                 if(imageView!=null) {
                     if (objectAnimator != null) {
                         objectAnimator.cancel();
@@ -147,4 +149,6 @@ public class ListMenu {
         this.rotation1 = rotation;
         this.rotation2 = rotation+180;
     }
+
+    private long disTime=0;
 }

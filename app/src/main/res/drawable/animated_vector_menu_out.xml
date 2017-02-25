@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector android:drawable="@drawable/ic_menu"
+xmlns:android="http://schemas.android.com/apk/res/android" >
+    <target
+        android:animation="@animator/svg_out_menu_1"
+        android:name="m1"/>
+    <target
+        android:animation="@animator/svg_out_menu_2"
+        android:name="m2"/>
+    <target
+        android:animation="@animator/svg_out_menu_3"
+        android:name="m3"/>
+</animated-vector>

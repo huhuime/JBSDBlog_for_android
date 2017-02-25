@@ -2,6 +2,9 @@ package com.jibushengdan.android.jbsdblog.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Html;
@@ -28,8 +31,13 @@ import com.litesuits.http.listener.HttpListener;
 import com.litesuits.http.request.JsonRequest;
 import com.litesuits.http.response.Response;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.jibushengdan.android.jbsdblog.activity.HomeActivity.*;
 
 public class DetailActivity extends BaseActivity {
 
@@ -133,7 +141,7 @@ public class DetailActivity extends BaseActivity {
         listMenu.setTextView(moreTextView);
         listMenu.setImageView(moreImageView, -90);
 
-        HomeActivity.PagerAdapter pagerAdapter = new HomeActivity.PagerAdapter(getSupportFragmentManager());
+        PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager());
         pagerAdapter.addFragment(new CommentFragment(fname,data.getString("name")), "评论");
         pager.setAdapter(pagerAdapter);
         tab.setupWithViewPager(pager);
@@ -160,5 +168,35 @@ public class DetailActivity extends BaseActivity {
                         refreshLayout.setRefreshing(false);
                     }
                 }));
+    }
+
+    static class PagerAdapter extends FragmentPagerAdapter {
+
+        private final List<Fragment> fragmentList = new ArrayList<>();
+        private final List<String> fragmentTitleList = new ArrayList<>();
+
+        public PagerAdapter(FragmentManager fragmentManager) {
+            super(fragmentManager);
+        }
+
+        public void addFragment(Fragment fragment, String title) {
+            fragmentList.add(fragment);
+            fragmentTitleList.add(title);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return fragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return fragmentList.size();
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return fragmentTitleList.get(position);
+        }
     }
 }

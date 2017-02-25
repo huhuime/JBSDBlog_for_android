@@ -23,6 +23,7 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:id="@+id/imageView"
+        android:scaleType="fitXY"
         android:transitionName="long_svg" />
 
     <LinearLayout

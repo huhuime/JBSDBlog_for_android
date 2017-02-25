@@ -13,6 +13,10 @@
         <item name="windowNoTitle">true</item>
         <item name="android:windowNoTitle">true</item>
     </style>
+    <style name="AppTheme.colorPrimary" parent="AppTheme">
+        <item name="android:textColor">@color/colorFont</item>
+        <item name="background">@color/colorPrimary</item>
+    </style>
     <style name="AppThemeWallpaper" parent="AppTheme">
         <item name="android:windowBackground">@color/dark8</item>
         <item name="colorPrimaryDark">@color/dark8</item>
